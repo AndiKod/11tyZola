@@ -1,0 +1,6 @@
+{% component figure(src: string, alt: string = "", caption: string = "") %}
+<figure class="stack" style="--stack-space: var(--space-xs)">
+  <img src="{{ src }}" alt="{{ alt }}" loading="lazy">
+  {% if caption %}<figcaption class="text-s text-muted">{{ caption }}</figcaption>{% endif %}
+</figure>
+{% endcomponent figure %}

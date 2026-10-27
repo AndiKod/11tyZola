@@ -1,0 +1,12 @@
+{% extends "layouts/base.html" %}
+{% block title %}{{ config.title }}{% endblock %}
+{% block description %}{{ section.description | default(value=config.description) }}{% endblock %}
+{% block content %}
+<main class="wrapper stack" style="--stack-space: var(--space-l)">
+  <header class="stack">
+    <h1 class="text-hero text-accent">{{ section.title }}</h1>
+    {% if section.description %}<p class="text-xl text-muted">{{ section.description }}</p>{% endif %}
+    <div class="text-muted">{{ section.content | safe }}</div>
+  </header>
+</main>
+{% endblock %}

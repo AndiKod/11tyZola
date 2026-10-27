@@ -1,0 +1,73 @@
+// GLOBAL: design tokens, reset and base typography.
+@layer global, compositions, utilities, blocks, exceptions;
+
+@layer global {
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #0f172a;
+    --color-muted: #475569;
+    --color-border: #e2e8f0;
+    --color-accent: #4f46e5;
+    --color-accent-contrast: #ffffff;
+    --color-code-bg: #0f172a;
+    --color-code-text: #f1f5f9;
+    --color-ok: #10b981;
+    --color-fail: #f43f5e;
+
+    --space-xs: 0.5rem;
+    --space-s: 1rem;
+    --space-m: 1.5rem;
+    --space-l: 3rem;
+    --space-xl: 4.5rem;
+
+    --radius: 0.75rem;
+    --measure: 48rem;
+    --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: #020617;
+      --color-text: #f1f5f9;
+      --color-muted: #94a3b8;
+      --color-border: #1e293b;
+      --color-accent: #818cf8;
+      --color-accent-contrast: #0f172a;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-block-size: 100vh;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, p, ul { margin: 0; padding: 0; }
+  ul { list-style: none; }
+  h1, h2, h3 { line-height: 1.2; }
+  a { color: inherit; text-underline-offset: 0.25em; }
+  a:hover { color: var(--color-accent); }
+  code { font-family: var(--font-mono); font-size: 0.9em; }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

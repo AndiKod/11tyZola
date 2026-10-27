@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ config.title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ config.description }}{% endblock %}">
+  <link rel="canonical" href="{% if current_url is defined %}{{ current_url }}{% else %}{{ get_url(path='/') }}{% endif %}">
+  <meta property="og:title" content="{% if page %}{{ page.title }} | {{ config.title }}{% elif section and section.title and section.title != config.title %}{{ section.title }} | {{ config.title }}{% else %}{{ config.title }}{% endif %}">
+  <meta property="og:description" content="{% if page and page.description %}{{ page.description }}{% elif section and section.description %}{{ section.description }}{% else %}{{ config.description }}{% endif %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{% if current_url is defined %}{{ current_url }}{% else %}{{ get_url(path='/') }}{% endif %}">
+  <meta property="og:image" content="{{ get_url(path='og.png') }}">
+  <!-- Load the compiled styles -->
+  <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
+  <!-- Alpine.js (local only, no CDN) -->
+  <script defer src="{{ get_url(path='js/alpine.min.js') }}"></script>
+</head>
+<body>
+  {% include "partials/header.html" %}
+  {% block content %}{% endblock %}
+  {% include "partials/footer.html" %}
+</body>
+</html>

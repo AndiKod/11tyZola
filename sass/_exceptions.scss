@@ -1,0 +1,7 @@
+// EXCEPTION: state and variation, driven by data attributes.
+// Example: <span class="status" data-state="ok">
+@layer exceptions {
+  .status[data-state="ok"] { color: var(--color-ok); }
+  .status[data-state="fail"] { color: var(--color-fail); }
+  .button[data-state="copied"] { background: var(--color-ok); }
+}

@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+# Zola + Alpine + CUBE CSS (plain SCSS), no Node. Rename this file as you like.
+set -euo pipefail
+cd "$(dirname "$0")"
+NAME="$(basename "$0")"
+
+# --- Pinned versions ----------------------------------------------------
+ZOLA_VERSION="v0.23.6"
+ALPINE_VERSION="3.17.5"
+
+# --- Paths --------------------------------------------------------------
+ZOLA=./bin/zola
+ALPINE_OUT=static/js/alpine.min.js
+
+case "$(uname -sm)" in
+  "Linux x86_64")   ZOLA_ARCH="x86_64-unknown-linux-gnu" ;;
+  "Linux aarch64")  ZOLA_ARCH="aarch64-unknown-linux-gnu" ;;
+  "Darwin x86_64")  ZOLA_ARCH="x86_64-apple-darwin" ;;
+  "Darwin arm64")   ZOLA_ARCH="aarch64-apple-darwin" ;;
+  *) echo "Unsupported platform: $(uname -sm)" >&2; exit 1 ;;
+esac
+
+need_setup() {
+  if [[ ! -x $ZOLA || ! -f $ALPINE_OUT ]]; then
+    echo "Missing dependencies. Run first: ./$NAME setup" >&2
+    exit 1
+  fi
+}
+
+usage() {
+  cat <<USAGE
+Usage: ./$NAME <command>
+
+  setup   Download Zola and Alpine (pinned versions)
+  dev     Dev server: zola serve (SCSS is compiled and watched by Zola)
+  build   Production build into _site/
+  clean   Remove _site/
+USAGE
+}
+
+case "${1:-help}" in
+  setup)
+    mkdir -p bin static/js
+    echo "→ Zola ${ZOLA_VERSION}"
+    curl -fL --progress-bar \
+      "https://github.com/getzola/zola/releases/download/${ZOLA_VERSION}/zola-${ZOLA_VERSION}-${ZOLA_ARCH}.tar.gz" \
+      | tar -xz -C bin
+    chmod +x "$ZOLA"
+    echo "→ Alpine.js ${ALPINE_VERSION}"
+    curl -fL --progress-bar \
+      "https://registry.npmjs.org/alpinejs/-/alpinejs-${ALPINE_VERSION}.tgz" \
+      | tar -xz -O package/dist/cdn.min.js > "$ALPINE_OUT"
+    echo "✓ Ready: $("$ZOLA" --version)"
+    ;;
+  dev)
+    need_setup
+    "$ZOLA" serve
+    ;;
+  build)
+    need_setup
+    if [[ -n "${BASE_URL:-}" ]]; then
+      "$ZOLA" build --base-url "$BASE_URL"
+    else
+      "$ZOLA" build
+    fi
+    ;;
+  clean)
+    rm -rf _site
+    ;;
+  help|-h|--help)
+    usage
+    ;;
+  *)
+    usage >&2
+    exit 1
+    ;;
+esac

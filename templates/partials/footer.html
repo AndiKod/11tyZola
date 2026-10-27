@@ -1,0 +1,6 @@
+{% set site = load_data(path="data/site.toml") %}
+
+<footer class="wrapper text-s text-muted">
+  <p>{{ site.author }} · built with Zola + Alpine + CUBE CSS</p>
+  <p><a href="{{ config.extra.repo }}">source</a></p>
+</footer>

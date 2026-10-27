@@ -1,0 +1,30 @@
+// BLOCK: reusable, self-contained components.
+@layer blocks {
+  .card {
+    padding: var(--space-m);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+
+  .button {
+    padding: 0.25rem 0.75rem;
+    border: 0;
+    border-radius: 0.375rem;
+    background: var(--color-accent);
+    color: var(--color-accent-contrast);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .button:hover { filter: brightness(1.1); }
+
+  .code-block {
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    background: var(--color-code-bg);
+    color: var(--color-code-text);
+  }
+
+  .status { font-weight: 700; }
+}

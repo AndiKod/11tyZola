@@ -1,0 +1,10 @@
+// UTILITY: small single-purpose classes that do one job, consistently.
+@layer utilities {
+  .text-hero { font-size: clamp(3rem, 10vw, 4.5rem); font-weight: 700; letter-spacing: -0.02em; }
+  .text-xl { font-size: 1.25rem; }
+  .text-s { font-size: 0.875rem; }
+  .text-accent { color: var(--color-accent); }
+  .text-muted { color: var(--color-muted); }
+  .weight-bold { font-weight: 600; }
+  .scroll-x { overflow-x: auto; white-space: nowrap; }
+}

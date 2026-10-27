@@ -1,0 +1,11 @@
+{% extends "layouts/base.html" %}
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+{% block description %}{{ page.description | default(value=config.description) }}{% endblock %}
+{% block content %}
+<main class="wrapper stack" style="--stack-space: var(--space-l)">
+  <article class="stack">
+    <h1 class="text-hero text-accent">{{ page.title }}</h1>
+    <div class="text-muted">{{ page.content | safe }}</div>
+  </article>
+</main>
+{% endblock %}

@@ -1,0 +1,11 @@
+base_url = "http://127.0.0.1:1111"
+title = "11tyZola"
+description = "A minimal Zola starter with an Eleventy-like workflow. No Node, no package manager, no build chain."
+
+output_dir = "_site"
+default_language = "en"
+compile_sass = true
+build_search_index = false
+
+[extra]
+repo = "https://github.com/AndiKod/11tyZola"

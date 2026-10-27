@@ -1,0 +1,42 @@
+# ==============================================================================
+# Traditional Search Engine Crawlers (Google, Bing, DuckDuckGo, etc.)
+# ==============================================================================
+User-agent: *
+Allow: /
+# Disallow: /admin/
+# Disallow: /private/
+
+# ==============================================================================
+# AI Crawlers & LLM Data Scrapers
+# ==============================================================================
+User-agent: GPTBot
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# ==============================================================================
+# XML Sitemap Location
+# ==============================================================================
+Sitemap: https://www.example.com/sitemap.xml

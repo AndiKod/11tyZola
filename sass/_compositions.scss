@@ -1,0 +1,26 @@
+// COMPOSITION: layout primitives. They decide how things sit together,
+// never how they look. Tweak them with custom properties.
+@layer compositions {
+  .wrapper {
+    max-inline-size: var(--measure);
+    margin-inline: auto;
+    padding-inline: var(--space-m);
+    padding-block: var(--space-xl);
+  }
+
+  .stack > * + * { margin-block-start: var(--stack-space, var(--space-s)); }
+
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: var(--cluster-justify, flex-start);
+    gap: var(--cluster-space, var(--space-s));
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--grid-space, var(--space-s));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--grid-min, 14rem)), 1fr));
+  }
+}

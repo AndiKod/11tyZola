@@ -1,0 +1,6 @@
+[build]
+  command = "./zac setup && BASE_URL=$URL ./zac build"
+  publish = "_site"
+
+# Netlify sets $URL to the deploy URL; Zola uses it as base_url.
+# _headers and _redirects in static/ are copied to _site/ by Zola.

@@ -1,0 +1,19 @@
+# ==============================================================================
+# Global Redirects & Routing Rules for Netlify
+# ==============================================================================
+
+# 1. Force non-www to www (or vice-versa)
+# Uncomment the line below if you want to force a specific domain canonicalization
+# https://example.com https://www.example.com 301!
+
+# 2. Force HTTPS (Netlify handles this automatically by default, 
+# but you can explicitly enforce it or handle custom status codes if needed)
+# http://* https://:splat 301!
+
+# 3. Custom 404 Page Routing
+# Zola generates a 404.html page. This tells Netlify to serve it cleanly 
+# for any missing route without changing the browser URL to /404/
+/*    /404.html    404
+
+# 4. Example of a permanent manual redirect (301)
+# /old-blog-path/*    /new-blog-path/:splat    301
